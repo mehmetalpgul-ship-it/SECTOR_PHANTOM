@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NULLSECTOR | Command Center</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="main-terminal">
+        <header>
+            <h1>[NULLSECTOR_OS v5.0]</h1>
+            <p>OPERATOR: <span class="highlight">GhostByte</span> | STATUS: <span id="sys-status">ACTIVE</span></p>
+        </header>
+        
+        <div class="action-bar">
+            <input type="text" id="target-url" placeholder="Enter target (e.g. https://target-server.com)">
+            <button id="launch-btn">EXECUTE_FLOOD</button>
+        </div>
+
+        <div id="output-stream">
+            <p class="meta-info">> Initializing all 30 language sectors...</p>
+        </div>
+    </div>
+    <script src="flooder.js"></script>
+</body>
+</html>
